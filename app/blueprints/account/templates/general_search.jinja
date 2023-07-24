@@ -1,0 +1,47 @@
+{% extends "base.jinja" %}
+{% block content %}
+<h1>General User and Pokemon search page</h1>
+<hr>
+<div class="d-flex justify-content-evenly align-items-center flex-row">
+  {% if user %}
+  <div class="m-2">
+    <h2>User Search</h2>
+    <hr>
+    <div class="card" style="width: 18rem;">
+      <img src='../../../static/images/default_profile_pic.png' class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{ user.username }}</h5>
+        <p class="card-text">PokeDex pokemon count {{ count }}/1281</p>
+        <a href="{{ url_for('account.home', username=user.username) }}" class="btn btn-mint">Go to their profile page</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% if pokemon %}
+  <div class="m-2">
+    <h2>Pokemon Search</h2>
+    <hr>
+    <div class="card" style="width: 18rem;">
+      <img src="{{ pokemon['sprite'] }}" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{ pokemon['name'].title() }}</h5>
+        <p class="card-text">Pokemon Id: {{ pokemon['pokemon_id'] }}</p>
+        <p class="card-text">Pokemon Height: {{ pokemon['height'] }}</p>
+        <p class="card-text">Pokemon Weight: {{ pokemon['weight'] }}</p>
+        <p class="card-text">Pokemon Types: {{ pokemon['types'] }}</p>
+        <form action="{{ url_for('account.add_to_pokedex')}}" method="POST" novalidate>
+          {{ poke_data_form.poke_name(value=pokemon['name']) }}
+          {{ poke_data_form.hidden_tag() }}
+          <div class="d-flex justify-content-end">
+            {{ poke_data_form.submit(class="btn btn-mint fw-medium text-dark m-1", value='Add to PokeDex') }}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% if not user and not pokemon %}
+  <h3>No User or pokemon found for the search: {{ search }}</h3>
+  {% endif %}
+</div>
+{% endblock content %}

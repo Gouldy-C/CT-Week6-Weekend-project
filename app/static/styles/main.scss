@@ -1,0 +1,45 @@
+@import "./vars";
+
+.main-background {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 0, 0);
+  background: url("../../images/image2.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.main-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.max-width1200 {
+  max-width: 1400px;
+}
+
+.content {
+  min-height: max(300px, calc(100vh - 350px));
+  color: $dark-text;
+}
+
+
+.home-list {
+  li {
+    font-size: 1.5rem;
+    padding-top: .5rem;
+  }
+}
+
+
+.min-width-form {
+  min-width: 300px;
+}
+
+
+.errors {
+  color: rgb(240, 0, 0);
+}
+

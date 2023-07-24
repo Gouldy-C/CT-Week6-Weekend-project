@@ -1,0 +1,31 @@
+$my-blue: #5bc3eb;
+$my-tangerine: #f06449;
+$my-green-black: #36382e;
+$my-mint: #80d39b;
+$my-mute-sunflower: #e9eb9e;
+$my-slate-blue: #799496;
+$off-white: #ffebca;
+$dark-text: #30353a;
+$dark-bg: #212529;
+
+
+/*$primary: $my-blue;*/
+
+@import './node_modules/bootstrap/scss/_functions';
+@import './node_modules/bootstrap/scss/_variables';
+
+
+$custom-theme-colors: (
+    "alt-white": $off-white,
+    "mint": $my-mint,
+    "tangerine": $my-tangerine,
+    "dark-bg": $dark-bg,
+    "gray-5" : $gray-500
+);
+
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+
+@import './node_modules/bootstrap/scss/bootstrap';
+

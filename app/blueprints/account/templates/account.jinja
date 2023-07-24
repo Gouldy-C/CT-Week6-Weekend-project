@@ -1,0 +1,25 @@
+{% extends "base.jinja" %}
+{% block content %}
+  <h1>{{user.username.title()}} Home Page</h1>
+  <div class="d-flex-row">
+  {% for pokemon in pokedex %}
+  <div class="card" style="width: 18rem;">
+    <img src="{{ pokemon.sprite }}" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">{{ pokemon.name.title() }}</h5>
+      <p class="card-text">Pokemon Id: {{ pokemon.pokemon_id }}</p>
+      <p class="card-text">Pokemon Height: {{ pokemon.height }}</p>
+      <p class="card-text">Pokemon Weight: {{ pokemon.weight }}</p>
+      <p class="card-text">Pokemon Types: {{ pokemon.types }}</p>
+      <form action="" method="POST" novalidate>
+        {{ poke_data_form.poke_name(value=pokemon.name) }}
+        {{ poke_data_form.hidden_tag() }}
+        <div class="d-flex justify-content-end">
+          {{ poke_data_form.submit(class="btn btn-mint fw-medium text-dark m-1", value='Remove from PokeDex') }}
+        </div>
+      </form>
+    </div>
+  </div>
+  {% endfor%}
+  </div>
+{% endblock content %}

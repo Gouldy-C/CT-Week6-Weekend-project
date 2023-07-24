@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-md bg-dark-bg">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" href="{{ url_for('main.home') }}">PokeClone</a>
+    <button class="navbar-toggler bg-mint" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    {% if not current_user.is_authenticated %}
+      <div class="d-flex w-100 justify-content-end">
+        <a class="btn btn-mint fw-medium text-dark m-1" aria-current="page" href="{{ url_for('auth.signin') }}">Sign In</a>
+        <a class="btn btn-mint fw-medium text-dark m-1" href="{{ url_for('auth.signup') }}">Sign Up</a>
+      </div>
+    {% else %}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link text-light" aria-current="page" href="{{ url_for('account.home', username=current_user.username) }}">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Account
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">PokeDex</a></li>
+            <li><a class="dropdown-item" href="#">Battle Teams</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search" action="{{ url_for('account.form_search')}}" method="POST" novalidate>
+        {{ search_form.hidden_tag() }}
+        <div class="d-flex justify-content-end">
+          {{ search_form.search(class="form-control m-1", placeholder="Search") }}
+          {{ search_form.submit(class="btn btn-mint fw-medium text-dark m-1") }}
+        </div>
+      </form>
+    </div>
+    {% endif %}
+  </div>
+</nav>
