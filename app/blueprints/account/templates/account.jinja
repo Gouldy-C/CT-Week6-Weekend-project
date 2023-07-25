@@ -1,9 +1,9 @@
 {% extends "base.jinja" %}
 {% block content %}
   <h1>{{user.username.title()}} Home Page</h1>
-  <div class="d-flex flex-row">
+  <div class="d-flex flex-row flex-wrap">
   {% for pokemon in pokedex %}
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="min-width: 15rem; width: 15rem;">
     <img src="{{ pokemon.sprite }}" class="card-img-top">
     <div class="card-body">
       <h5 class="card-title">{{ pokemon.name.title() }}</h5>
